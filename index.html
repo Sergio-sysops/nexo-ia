@@ -71,6 +71,8 @@ h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px;letter-spacing:-1px;line-heigh
 .price small{font-size:16px;color:var(--mut);font-weight:600}
 .setup{color:var(--mut);font-size:15px;margin-bottom:12px}
 .card ul{padding-left:20px;margin:14px 0 22px}
+.planes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;align-items:stretch}
+.planes .card{display:flex;flex-direction:column}.planes .card ul{flex:1}.planes .card .btn{align-self:flex-start}
 .star{border:1px solid var(--a);box-shadow:0 0 0 1px var(--a),0 20px 60px -20px rgba(124,92,255,.5);position:relative}
 .badge{position:absolute;top:-13px;left:24px;background:linear-gradient(90deg,var(--a),var(--b));color:#0b1020;font-weight:800;font-size:13px;padding:4px 12px;border-radius:99px}
 /* SEGURIDAD */
@@ -243,19 +245,22 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-siz
 
 <!-- PRECIOS -->
 <section id="precios"><div class="wrap">
-  <div class="center"><span class="code">// Planes</span><h2>Elige por dónde empezar, <span class="grad">sin permanencia</span></h2><p class="lead">Cada negocio es distinto. Tras la demo te damos un precio cerrado, sin sorpresas y adaptado a ti. Puedes darte de baja cuando quieras.</p></div>
-  <div class="grid3">
+  <div class="center"><span class="code">// Planes</span><h2>Elige por dónde empezar, <span class="grad">sin permanencia</span></h2><p class="lead">Cada negocio es distinto. Tras la demo te damos un precio cerrado, sin sorpresas y adaptado a ti. Todos llevan el mantenimiento incluido y puedes darte de baja cuando quieras.</p></div>
+  <div class="planes">
+    <div class="card"><h3>🌐 Web + Mantenimiento</h3><p>Para negocios que quieren una web que funcione y olvidarse de ella.</p>
+      <ul><li>Web profesional pensada para el móvil</li><li>Dominio, alojamiento y certificado incluidos</li><li>Cambios cada mes: precios, fotos, horarios…</li><li>Copias de seguridad y vigilancia de que funciona</li><li>Opcional: cambia tú mismo precios y horarios desde el móvil</li></ul>
+      <a class="btn ghost" href="#webs">Ver ejemplos</a></div>
     <div class="card"><h3>💬 Asistente de chat</h3><p>Para negocios que reciben preguntas por la web y por WhatsApp.</p>
-      <ul><li>Responde 24 h en tu web y en WhatsApp</li><li>El mismo asistente en los dos sitios</li><li>Te envía los contactos interesados</li><li>Informe mensual</li></ul>
+      <ul><li>Mantenimiento incluido</li><li>Responde 24 h en tu web y en WhatsApp</li><li>El mismo asistente en los dos sitios</li><li>Te envía los contactos interesados</li><li>Informe mensual</li></ul>
       <a class="btn ghost" href="#demo">Me interesa</a></div>
     <div class="card star"><span class="badge">EL MÁS PEDIDO</span><h3>📞 Recepcionista IA</h3><p>Para clínicas, inmobiliarias, talleres y peluquerías.</p>
-      <ul><li>Coge el teléfono cuando tú no puedes</li><li>Da citas y toma recados</li><li>Minutos de llamada adaptados a tu negocio</li><li>Resumen de cada llamada</li></ul>
+      <ul><li>Mantenimiento incluido</li><li>Coge el teléfono cuando tú no puedes</li><li>Da citas y toma recados</li><li>Minutos de llamada adaptados a tu negocio</li><li>Resumen de cada llamada</li></ul>
       <a class="btn" href="#demo">Probarlo en mi negocio</a></div>
     <div class="card"><h3>🚀 Nexo Completo</h3><p>Voz + chat + WhatsApp + agenda + seguimiento.</p>
-      <ul><li>Recepcionista IA + chat web</li><li>WhatsApp con IA</li><li>Seguimiento y presupuestos automáticos</li></ul>
+      <ul><li>Mantenimiento y web incluidos</li><li>Recepcionista IA + chat web</li><li>WhatsApp con IA</li><li>Seguimiento y presupuestos automáticos</li></ul>
       <a class="btn ghost" href="#demo">Hablemos</a></div>
   </div>
-  <p class="lead center" style="margin-top:22px">También hacemos webs, automatizaciones a medida y mantenimiento. <a href="#demo" style="color:#22d3ee">Cuéntanos qué necesitas →</a></p>
+  <p class="lead center" style="margin-top:22px">También hacemos automatizaciones a medida y revisiones de seguridad. <a href="#demo" style="color:#22d3ee">Cuéntanos qué necesitas →</a></p>
 </div></section>
 
 <!-- SEGURIDAD -->
