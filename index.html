@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexo IA · Tu teléfono, siempre atendido</title>
+<meta name="description" content="Asistentes de inteligencia artificial que cogen el teléfono, responden en segundos y dan citas las 24 horas. Para negocios de Tomelloso y comarca. Pide tu demo gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a16;--card:#0f1530;--line:#1d2440;--txt:#e8ecff;--mut:#8b93b8;--a:#7c5cff;--b:#22d3ee;--ok:#34d399;--warn:#fbbf24}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:Manrope,system-ui,sans-serif;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.grad{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.code{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:2px;color:var(--b);text-transform:uppercase;display:block;margin-bottom:10px}
+header{position:sticky;top:0;background:rgba(7,10,22,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;text-decoration:none}
+nav a{color:var(--mut);text-decoration:none;margin-left:20px;font-weight:600;font-size:15px}
+nav a:hover{color:var(--txt)}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--a),var(--b));color:#0b1020;font-weight:800;padding:14px 26px;border-radius:14px;text-decoration:none;border:0;cursor:pointer;font-size:16px;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+nav .btn{padding:10px 18px;color:#0b1020;margin-left:20px}
+section{padding:80px 0}
+h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px;letter-spacing:-1px;line-height:1.15}
+.center{text-align:center}
+.lead{color:var(--mut);max-width:700px;margin:0 auto 40px;font-size:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}
+.card h3{margin:6px 0 8px;font-size:21px}
+.card p,.card li{color:var(--mut)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+/* HERO */
+.hero{padding:90px 0 70px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-40% -10% auto auto;width:700px;height:700px;background:radial-gradient(circle,rgba(124,92,255,.25),transparent 60%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.04;margin:0 0 20px;letter-spacing:-2px}
+.hero p{font-size:19px;color:var(--mut);margin:0 0 30px;max-width:560px}
+.trust{margin-top:18px;color:var(--mut);font-size:14px}
+.stats{display:grid;gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 22px}
+.stat:nth-child(2){margin-left:40px}.stat:nth-child(3){margin-left:12px}
+.stat b{font-size:34px;font-weight:800}
+.stat span{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;color:var(--mut)}
+@media(max-width:850px){.hero .wrap{grid-template-columns:1fr}.stat:nth-child(n){margin-left:0}nav a:not(.btn){display:none}}
+/* PROBLEMAS */
+.pain .ico{font-size:28px}
+/* DATO */
+.dato{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.big{font-size:clamp(60px,9vw,110px);font-weight:800;line-height:1}
+@media(max-width:850px){.dato{grid-template-columns:1fr}}
+/* AUTODIAGNÓSTICO */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:860px;margin:0 auto}
+.checks label{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer;font-weight:600}
+.checks input{width:20px;height:20px;accent-color:#7c5cff}
+.checks label:has(input:checked){border-color:var(--a);background:#16153a}
+@media(max-width:700px){.checks{grid-template-columns:1fr}}
+#resultado{max-width:860px;margin:22px auto 0;text-align:center;font-weight:700;font-size:18px;min-height:28px}
+/* DECISIÓN */
+.decision{background:linear-gradient(135deg,#16153a,#0b2230);border:1px solid var(--line);border-radius:26px;padding:50px 30px;text-align:center}
+/* SERVICIOS */
+.serv .kpi{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--b);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+/* PASOS */
+.steps{counter-reset:s}
+.steps .card h3::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(90deg,var(--a),var(--b));color:#0b1020;font-weight:800;margin-right:10px}
+/* PRECIOS */
+.borrador{display:inline-block;background:rgba(251,191,36,.15);color:var(--warn);border:1px dashed var(--warn);border-radius:10px;padding:6px 12px;font-weight:800;font-size:13px;margin-bottom:16px}
+.price{font-size:34px;font-weight:800;margin:10px 0 0}
+.price small{font-size:16px;color:var(--mut);font-weight:600}
+.setup{color:var(--mut);font-size:15px;margin-bottom:12px}
+.card ul{padding-left:20px;margin:14px 0 22px}
+.star{border:1px solid var(--a);box-shadow:0 0 0 1px var(--a),0 20px 60px -20px rgba(124,92,255,.5);position:relative}
+.badge{position:absolute;top:-13px;left:24px;background:linear-gradient(90deg,var(--a),var(--b));color:#0b1020;font-weight:800;font-size:13px;padding:4px 12px;border-radius:99px}
+/* SEGURIDAD */
+.shield{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+@media(max-width:850px){.shield{grid-template-columns:1fr}}
+.ok li{list-style:none;margin:10px 0;color:var(--txt)}
+.ok li::before{content:"✓";color:var(--b);font-weight:800;margin-right:10px}
+/* NOSOTROS */
+.plazas{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.plaza{width:54px;height:54px;border-radius:14px;border:2px dashed var(--line);display:grid;place-items:center;color:var(--mut);font-weight:800}
+.plaza.libre{border-color:var(--b);color:var(--b)}
+/* FORM */
+form{display:grid;gap:14px;max-width:560px;margin:0 auto}
+input,select{width:100%;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:14px;font:inherit}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px auto;max-width:820px}
+summary{font-weight:700;cursor:pointer}
+details p{color:var(--mut);margin:10px 0 0}
+/* WEBS */
+.webs{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.web{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.web:hover{transform:translateY(-4px);border-color:var(--a)}
+.web .marco{background:#1a2142;padding:8px 10px 0;border-bottom:1px solid var(--line)}
+.web .puntos{display:flex;gap:5px;margin-bottom:8px}.web .puntos i{width:9px;height:9px;border-radius:50%;background:#2c3560}
+.web img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:8px 8px 0 0}
+.web .info{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.web h3{margin:0 0 4px;font-size:20px}
+.web .tipo{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;color:var(--b);text-transform:uppercase}
+.web ul{padding-left:18px;margin:12px 0 18px;color:var(--mut);flex:1}
+.web .btn{align-self:flex-start;padding:11px 20px;font-size:15px}
+.nota-demo{color:var(--mut);font-size:14px;text-align:center;margin-top:20px}
+@media(max-width:800px){.webs{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:14px;text-align:center}
+.final{text-align:center;padding:90px 0}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="brand" href="#">
+    <svg width="34" height="34" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="14" fill="#0b1020"/><rect x="4" y="4" width="56" height="56" rx="14" fill="none" stroke="url(#g)" stroke-width="3"/><path transform="rotate(45 32 32)" d="M22 42V22l20 20V22" fill="none" stroke="url(#g)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>nexo <span class="grad">IA</span></span>
+  </a>
+  <nav><a href="#problema">Problema</a><a href="#servicios">Servicios</a><a href="#webs">Webs</a><a href="#precios">Planes</a><a href="#seguridad">Seguridad</a><a href="#faq">FAQ</a><a class="btn" href="#demo">Demo gratis</a></nav>
+</div></header>
+
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+  <div>
+    <span class="code">Nexo IA — agentes de IA para negocios de Tomelloso y comarca</span>
+    <h1>Tu teléfono, siempre atendido.<br><span class="grad">Aunque tú no puedas.</span></h1>
+    <p>Un asistente de inteligencia artificial que coge el teléfono, responde en segundos y da citas por ti. De día, de noche y aunque llamen varios a la vez.</p>
+    <a class="btn" href="#demo">Pide tu demo gratis</a> &nbsp; <a class="btn ghost" href="#diagnostico">Haz el autodiagnóstico</a>
+    <div class="trust">Sin permanencia · Cerca de ti · Hecho por un técnico en sistemas y ciberseguridad</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b class="grad">24/7</b><span>ATENCIÓN</span></div>
+    <div class="stat"><b>3 s</b><span>EN RESPONDER</span></div>
+    <div class="stat"><b>0</b><span>VECES "COMUNICA"</span></div>
+  </div>
+</div></div>
+
+<!-- PROBLEMAS -->
+<section id="problema"><div class="wrap">
+  <div class="center"><span class="code">// Diagnóstico</span><h2>Los problemas de cada día</h2>
+  <p class="lead">No es que no tengas clientes. Es que se te escapan antes de que puedas atenderlos.</p></div>
+  <div class="grid3 pain">
+    <div class="card"><div class="ico">📵</div><h3>Llamadas sin coger</h3><p>Estás con un cliente o con las manos ocupadas, y quien llama no espera: llama al siguiente.</p></div>
+    <div class="card"><div class="ico">🐢</div><h3>Respuestas lentas</h3><p>Contestas el WhatsApp o el correo horas después. Para entonces ya ha elegido a otro.</p></div>
+    <div class="card"><div class="ico">🕳️</div><h3>Interesados sin seguimiento</h3><p>Gente que preguntó y nadie volvió a llamar. Ventas que se pierden por olvido.</p></div>
+  </div>
+</div></section>
+
+<!-- DATO -->
+<section style="padding-top:0"><div class="wrap dato">
+  <div><span class="code">// Dato clave</span><h2>Quien responde primero, <span class="grad">se lleva el cliente</span></h2>
+  <p style="color:var(--mut);font-size:18px">Cuando alguien necesita una cita o un precio, llama al primero que encuentra. Si no le contestas en ese momento, no suele haber segunda oportunidad. Tu asistente de Nexo IA responde en segundos, a cualquier hora y cualquier día.</p>
+  <a class="btn" href="#demo">Aplicarlo en mi negocio</a></div>
+  <div class="card center"><div class="big grad">3 s</div><p>es lo que tarda tu asistente en atender. Ni esperas, ni contestador, ni "llame más tarde".</p></div>
+</div></section>
+
+<!-- VARIAS LLAMADAS -->
+<section style="padding-top:0"><div class="wrap"><div class="decision" style="text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center">
+  <div><span class="code">// La diferencia</span>
+  <h2>Tu recepcionista atiende una llamada.<br><span class="grad">Tu asistente, todas a la vez.</span></h2>
+  <p style="color:var(--mut);font-size:18px">Si llaman tres personas al mismo tiempo, las tres son atendidas al momento. Sin esperas, sin música, sin "comunica". Y no se cansa, no se pone mala ni se va de vacaciones.</p></div>
+  <div class="grid3" style="grid-template-columns:1fr">
+    <div class="card" style="padding:16px 20px">📞 <b>Llamada 1</b> · <span style="color:var(--mut)">Pide cita para el martes</span> <span style="float:right;color:#34d399">● atendida</span></div>
+    <div class="card" style="padding:16px 20px">📞 <b>Llamada 2</b> · <span style="color:var(--mut)">Pregunta el precio</span> <span style="float:right;color:#34d399">● atendida</span></div>
+    <div class="card" style="padding:16px 20px">📞 <b>Llamada 3</b> · <span style="color:var(--mut)">Cambia su cita</span> <span style="float:right;color:#34d399">● atendida</span></div>
+  </div>
+</div></div></section>
+
+<!-- AUTODIAGNÓSTICO -->
+<section id="diagnostico" style="padding-top:0"><div class="wrap">
+  <div class="center"><span class="code">// Autodiagnóstico</span><h2>¿Cuántos de estos problemas tienes?</h2><p class="lead">Marca los que te pasan. Tarda 10 segundos.</p></div>
+  <div class="checks">
+    <label><input type="checkbox"> Pierdo llamadas cuando estoy ocupado</label>
+    <label><input type="checkbox"> No atiendo fuera de horario</label>
+    <label><input type="checkbox"> Tardo en contestar WhatsApp y correos</label>
+    <label><input type="checkbox"> No hago seguimiento de quien pregunta</label>
+    <label><input type="checkbox"> Pierdo tiempo dando citas por teléfono</label>
+    <label><input type="checkbox"> Mis presupuestos tardan en salir</label>
+  </div>
+  <div id="resultado"></div>
+</div></section>
+
+<!-- DECISIÓN -->
+<section style="padding-top:0"><div class="wrap"><div class="decision">
+  <span class="code">// Punto de decisión</span>
+  <h2>Seguir igual también es una decisión</h2>
+  <p class="lead" style="margin-bottom:26px">Cada semana sin automatizar son clientes, tiempo y dinero que no vuelven.</p>
+  <a class="btn" href="#demo">Quiero dejar de perder clientes</a>
+</div></div></section>
+
+<!-- SERVICIOS -->
+<section id="servicios"><div class="wrap">
+  <div class="center"><span class="code">// Lo que hacemos</span><h2>Un equipo de IA que no descansa</h2><p class="lead">Empezamos por lo que más te urge y vamos sumando lo que necesites.</p></div>
+  <div class="grid3 serv">
+    <div class="card"><span class="kpi">varias a la vez</span><h3>📞 Recepcionista de voz IA</h3><p>Coge el teléfono cuando tú no puedes, responde dudas, da citas y te pasa los recados. Atiende varias llamadas a la vez: nunca da comunicando.</p></div>
+    <div class="card"><span class="kpi">3 s</span><h3>💬 Chat web y WhatsApp</h3><p>Responde al momento en tu web y en WhatsApp, y recoge los datos de quien está interesado.</p></div>
+    <div class="card"><span class="kpi">0 olvidos</span><h3>🔁 Seguimiento automático</h3><p>Cada interesado recibe su seguimiento: recordatorios, avisos y nada se queda en el aire.</p></div>
+    <div class="card"><span class="kpi">sin idas y vueltas</span><h3>📅 Agenda inteligente</h3><p>Tus clientes se apuntan solos en los huecos libres, y les llega su recordatorio.</p></div>
+    <div class="card"><span class="kpi">en minutos</span><h3>🧾 Presupuestos automáticos</h3><p>Presupuestos con tu formato preparados en minutos, no en días.</p></div>
+    <div class="card"><span class="kpi">tú la actualizas</span><h3>🌐 Webs para tu negocio</h3><p>Webs rápidas y pensadas para el móvil: carta, citas, pedidos por WhatsApp… y que puedes actualizar tú mismo. <a href="#webs" style="color:#22d3ee">Ver ejemplos →</a></p></div>
+  </div>
+</div></section>
+
+<!-- WEBS -->
+<section id="webs" style="padding-top:0"><div class="wrap">
+  <div class="center"><span class="code">// Webs</span><h2>Webs que <span class="grad">trabajan para tu negocio</span></h2>
+  <p class="lead">No son folletos: cada una resuelve algo del día a día. Ábrelas en el móvil y pruébalas.</p></div>
+  <div class="webs">
+    <article class="web">
+      <div class="marco"><div class="puntos"><i></i><i></i><i></i></div><img src="img/web-bar-restaurante.jpg" alt="Web de ejemplo para bar · restaurante: La Plazuela" loading="lazy"></div>
+      <div class="info"><span class="tipo">Bar · Restaurante</span><h3>La Plazuela</h3>
+        <ul><li>Cambia sola según la hora: desayunos, menú, tapeo y copas</li><li>Carta con los 14 alérgenos y QR para las mesas</li><li>Reservas por WhatsApp y pizarra del día</li></ul>
+        <a class="btn" href="https://sergio-sysops.github.io/web-bar-restaurante/" target="_blank" rel="noopener">Ver la web →</a></div>
+    </article>
+    <article class="web">
+      <div class="marco"><div class="puntos"><i></i><i></i><i></i></div><img src="img/web-gimnasio.jpg" alt="Web de ejemplo para gimnasio: PULSO" loading="lazy"></div>
+      <div class="info"><span class="tipo">Gimnasio</span><h3>PULSO</h3>
+        <ul><li>El dueño cambia horarios y precios desde el móvil, sin tocar código</li><li>Próxima clase en directo y horario por días</li><li>Primera clase gratis por WhatsApp</li></ul>
+        <a class="btn" href="https://sergio-sysops.github.io/web-gimnasio/" target="_blank" rel="noopener">Ver la web →</a></div>
+    </article>
+    <article class="web">
+      <div class="marco"><div class="puntos"><i></i><i></i><i></i></div><img src="img/web-clinica.jpg" alt="Web de ejemplo para clínica · salud: Clínica Alba" loading="lazy"></div>
+      <div class="info"><span class="tipo">Clínica · Salud</span><h3>Clínica Alba</h3>
+        <ul><li>«¿Qué te pasa?»: el paciente elige y le recomienda tratamiento</li><li>Cita previa por WhatsApp con días y franja</li><li>Cuida los datos de salud (RGPD)</li></ul>
+        <a class="btn" href="https://sergio-sysops.github.io/web-clinica/" target="_blank" rel="noopener">Ver la web →</a></div>
+    </article>
+    <article class="web">
+      <div class="marco"><div class="puntos"><i></i><i></i><i></i></div><img src="img/web-tienda.jpg" alt="Web de ejemplo para comercio de barrio: La Huerta de Carmen" loading="lazy"></div>
+      <div class="info"><span class="tipo">Comercio de barrio</span><h3>La Huerta de Carmen</h3>
+        <ul><li>Cesta de la compra por kilos o unidades</li><li>Pedidos por WhatsApp sin comisiones de plataformas</li><li>Recogida en tienda o reparto a domicilio</li></ul>
+        <a class="btn" href="https://sergio-sysops.github.io/web-tienda/" target="_blank" rel="noopener">Ver la web →</a></div>
+    </article>
+  </div>
+  <p class="nota-demo">Son negocios de ejemplo, creados para que veas cómo trabajamos. La tuya, con tus datos, tu estilo y conectada a tu asistente de IA.</p>
+</div></section>
+
+<!-- CÓMO FUNCIONA -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="center"><span class="code">// Método</span><h2>Funcionando en días, no en meses</h2><p class="lead">Tú no tocas nada técnico.</p></div>
+  <div class="grid3 steps">
+    <div class="card"><h3>Te escuchamos</h3><p>Nos cuentas tus servicios, horarios, precios y cómo quieres que se atienda a tus clientes.</p></div>
+    <div class="card"><h3>Lo configuramos</h3><p>Preparamos tu asistente con la información real de tu negocio y lo probamos contigo.</p></div>
+    <div class="card"><h3>A trabajar</h3><p>Atiende, da citas y cada mes te enseñamos en tu panel todo lo que ha hecho.</p></div>
+  </div>
+</div></section>
+
+<!-- PRECIOS -->
+<section id="precios"><div class="wrap">
+  <div class="center"><span class="code">// Planes</span><h2>Elige por dónde empezar, <span class="grad">sin permanencia</span></h2><p class="lead">Cada negocio es distinto. Tras la demo te damos un precio cerrado, sin sorpresas y adaptado a ti. Puedes darte de baja cuando quieras.</p></div>
+  <div class="grid3">
+    <div class="card"><h3>💬 Asistente de chat</h3><p>Para negocios que reciben preguntas por la web y por WhatsApp.</p>
+      <ul><li>Responde 24 h en tu web y en WhatsApp</li><li>El mismo asistente en los dos sitios</li><li>Te envía los contactos interesados</li><li>Informe mensual</li></ul>
+      <a class="btn ghost" href="#demo">Me interesa</a></div>
+    <div class="card star"><span class="badge">EL MÁS PEDIDO</span><h3>📞 Recepcionista IA</h3><p>Para clínicas, inmobiliarias, talleres y peluquerías.</p>
+      <ul><li>Coge el teléfono cuando tú no puedes</li><li>Da citas y toma recados</li><li>300 minutos al mes incluidos</li><li>Resumen de cada llamada</li></ul>
+      <a class="btn" href="#demo">Probarlo en mi negocio</a></div>
+    <div class="card"><h3>🚀 Nexo Completo</h3><p>Voz + chat + WhatsApp + agenda + seguimiento.</p>
+      <ul><li>Recepcionista IA (600 min) + chat web</li><li>WhatsApp con IA</li><li>Seguimiento y presupuestos automáticos</li></ul>
+      <a class="btn ghost" href="#demo">Hablemos</a></div>
+  </div>
+  <p class="lead center" style="margin-top:22px">También hacemos webs, automatizaciones a medida y mantenimiento. <a href="#demo" style="color:#22d3ee">Cuéntanos qué necesitas →</a></p>
+</div></section>
+
+<!-- SEGURIDAD -->
+<section id="seguridad" style="padding-top:0"><div class="wrap shield">
+  <div><span class="code">// Vigilancia Nexo</span><h2>🛡️ Tu negocio, <span class="grad">vigilado</span></h2>
+    <p style="color:var(--mut);font-size:18px">Detrás de Nexo IA hay un técnico en sistemas y ciberseguridad. Además de la IA, vigilamos que tu negocio esté seguro en internet.</p>
+    <div class="setup" style="font-size:17px;margin-top:14px">🎁 <b>Primer mes gratis</b> si contratas cualquier plan de IA</div></div>
+  <div class="card"><ul class="ok">
+    <li>Aviso si tu web se cae</li><li>Aviso antes de que caduquen tu dominio y tu certificado</li><li>Comprobamos si tus correos aparecen en filtraciones</li><li>Detectamos webs o perfiles falsos con tu nombre</li><li>Aviso de reseñas nuevas en Google</li><li>Informe mensual</li>
+  </ul></div>
+</div></section>
+
+<!-- NOSOTROS (honesto, sin testimonios inventados) -->
+<section style="padding-top:0"><div class="wrap center">
+  <span class="code">// Sobre nosotros</span>
+  <h2>Cerca de ti, <span class="grad">sin centralitas</span></h2>
+  <p class="lead">Somos de Tomelloso. No vendemos tecnología por vender: montamos sistemas que se notan desde la primera semana, y nos puedes llamar o ver en persona cuando lo necesites.</p>
+  <div class="card" style="max-width:640px;margin:0 auto">
+    <h3>🚀 Plazas de lanzamiento</h3>
+    <p>Estamos empezando y buscamos a nuestros <b>primeros 5 negocios</b> de la zona: prueba con tus datos, trato directo y condiciones de lanzamiento. A cambio, solo te pedimos tu opinión sincera.</p>
+    <div class="plazas"><div class="plaza libre">1</div><div class="plaza libre">2</div><div class="plaza libre">3</div><div class="plaza libre">4</div><div class="plaza libre">5</div></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0"><div class="wrap">
+  <div class="center"><span class="code">// Preguntas frecuentes</span><h2>Resolvemos tus dudas</h2></div>
+  <details><summary>¿Cuánto tarda en estar funcionando?</summary><p>Normalmente unos pocos días desde que nos das la información de tu negocio.</p></details>
+  <details><summary>¿Necesito saber de informática?</summary><p>No. Lo montamos y lo mantenemos nosotros. Tú solo nos dices qué quieres.</p></details>
+  <details><summary>¿Mis clientes sabrán que hablan con una IA?</summary><p>Sí. El asistente se presenta como asistente virtual, como exige la ley europea. Habla de forma natural y, si algo no lo sabe, toma el recado.</p></details>
+  <details><summary>¿Tengo que cambiar mi número?</summary><p>No. Puedes desviar las llamadas que no coges a tu asistente, o usar un número nuevo solo para él.</p></details>
+  <details><summary>¿Y los datos de mis clientes?</summary><p>Se tratan según el RGPD y firmamos contigo un contrato de encargado del tratamiento. Tus datos son tuyos.</p></details>
+  <details><summary>¿Cuánto cuesta?</summary><p>Depende de lo que necesites (voz, chat, número de llamadas...). Después de probarlo te damos un precio cerrado: un pago para ponerlo en marcha y una cuota mensual, sin sorpresas.</p></details>
+  <details><summary>¿Puedo darme de baja cuando quiera?</summary><p>Sí. Sin permanencia: avisas con 30 días y listo.</p></details>
+</div></section>
+
+<!-- DEMO -->
+<section id="demo" style="padding-top:0"><div class="wrap">
+  <div class="center"><span class="code">// Pruébalo</span><h2>Pide tu <span class="grad">demo gratis</span></h2><p class="lead">Preparamos un asistente con los datos de TU negocio para que lo pruebes: llámalo, pregúntale, pide una cita. Sin compromiso.</p></div>
+  <form onsubmit="event.preventDefault();alert('Borrador: el formulario se conectará a Nexo cuando la web esté publicada.')">
+    <input required placeholder="Nombre del negocio">
+    <select required><option value="">¿Qué te interesa?</option><option>Asistente de voz (teléfono)</option><option>Chat web y WhatsApp</option><option>Una web</option><option>Varias cosas</option></select>
+    <select required><option value="">Tipo de negocio</option><option>Clínica / salud</option><option>Inmobiliaria</option><option>Taller</option><option>Peluquería / estética</option><option>Restaurante / bar</option><option>Tienda</option><option>Gimnasio</option><option>Otro</option></select>
+    <input required placeholder="Tu nombre">
+    <input required type="tel" placeholder="Teléfono">
+    <label style="color:var(--mut);font-size:14px"><input type="checkbox" required style="width:auto"> Acepto que Nexo IA me contacte para preparar la demo (política de privacidad).</label>
+    <button class="btn" type="submit">Enviar</button>
+    <p class="center" style="color:var(--mut);font-size:14px;margin:0">Sin compromiso · Te contestamos en 24 h · 100 % personalizado</p>
+  </form>
+</div></section>
+
+<div class="final"><div class="wrap">
+  <h2>Tu próximo cliente está <span class="grad">esperando una respuesta</span></h2>
+  <p class="lead">Que esta vez se la des tú, aunque estés ocupado.</p>
+  <a class="btn" href="#demo">Empezar ahora</a>
+</div></div>
+
+<footer><div class="wrap">© 2026 Nexo IA · Tomelloso (Ciudad Real) · <a href="#">Aviso legal</a> · <a href="#">Privacidad</a> · <a href="#">Cookies</a></div></footer>
+
+<script>
+const cajas=[...document.querySelectorAll('.checks input')], res=document.getElementById('resultado');
+cajas.forEach(c=>c.addEventListener('change',()=>{
+  const n=cajas.filter(x=>x.checked).length;
+  res.innerHTML = n===0 ? '' : n<=2
+    ? `Tienes <span class="grad">${n} de 6</span>. Hay margen de mejora: con un asistente lo solucionas rápido.`
+    : `Tienes <span class="grad">${n} de 6</span>. Estás perdiendo clientes cada semana. <a href="#demo" style="color:#22d3ee">Te enseñamos cómo arreglarlo →</a>`;
+}));
+</script>
+</body>
+</html>
